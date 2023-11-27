@@ -1,0 +1,15 @@
+.Todos {
+  padding: 2em;
+}
+.todo-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1em;
+  font-size: 0.6em;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.2;
+}
