@@ -1,93 +1,27 @@
 import { useState } from "react";
-import "./App.css";
 
-// const initialState = JSON.parse(localStorage.getItem("todos") || "[]");
+function Button() {
+  const [clicks, setClicks] = useState(0);
+  const [increaseBy, setInc] = useState(1);
+  console.log("increaseBy", increaseBy);
 
-const initialState = [
-  {
-    id: 1,
-    title: "Learn React",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "Learn JSX",
-    completed: false,
-  },
-  {
-    id: 3,
-    title: "Learn Hooks",
-    completed: false,
-  },
-];
-
-function Todos() {
-  const [todos, _setTodos] = useState(initialState);
-  const setTodos = (todos) => {
-    _setTodos(todos);
-    localStorage.setItem("todos", JSON.stringify(todos));
-  };
-  const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
-
-  const completeTodo = (id) => {
-    const newTodos = todos.map((todo) => {
-      console.log("todo", todo);
-      if (todo.id === id) {
-        return {
-          id: todo.id,
-          title: todo.title,
-          completed: !todo.completed,
-        };
-      } else {
-        return todo;
-      }
-    });
-    setTodos(newTodos);
-  };
-
-  const handleKeyUp = (event) => {
-    console.log("onKeyUp", event);
-    if (event.key === "Enter") {
-      const newTodo = {
-        id: Date.now(),
-        title: event.target.value,
-        completed: false,
-      };
-      setTodos([newTodo, ...todos]);
-      event.target.value = "";
-    }
-  };
-
-  const nodes = todos.map((todo) => (
-    <div
-      key={todo.id}
-      className={todo.completed ? "completed" : "active"}
-    >
-      <p className="todo-text">{todo.title}</p>
-      <div className="todo-actions">
-        <button onClick={() => completeTodo(todo.id)}>Complete</button>
-        <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-      </div>
-    </div>
-  ));
-
+  function handleClick() {
+    setClicks(clicks + increaseBy);
+  }
   return (
-    <div className="Todos">
+    <main>
       <input
-        type="text"
-        placeholder="Add Todo"
-        onKeyUp={handleKeyUp}
+        type="number"
+        onChange={(ev) => setInc(Number(ev.target.value))}
+        value={increaseBy}
       />
-      <section>
-        {nodes}
-      </section>
-      {
-        /* <pre>
-        {JSON.stringify(todos, null, 2)}
-      </pre> */
-      }
-    </div>
+      <button
+        onClick={handleClick}
+      >
+        Clicked {clicks} times
+      </button>
+    </main>
   );
 }
 
-export default Todos;
+export default Button;
