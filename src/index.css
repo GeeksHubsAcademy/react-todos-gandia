@@ -31,6 +31,14 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
 
 h1 {
   font-size: 3.2em;
@@ -57,8 +65,9 @@ button:focus-visible {
 }
 
 input {
-  padding: 1em 2em;
-  border: 1px solid rgba(0, 0, 0, 0.2)
+  padding: 0.6em 1.2em;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 70px;
 }
 
 @media (prefers-color-scheme: light) {
