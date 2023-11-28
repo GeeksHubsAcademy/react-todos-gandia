@@ -34,8 +34,9 @@ function Todos() {
       console.log("todo", todo);
       if (todo.id === id) {
         return {
-          id: todo.id,
-          title: todo.title,
+          // id: todo.id,
+          // title: todo.title,
+          ...todo,
           completed: !todo.completed,
         };
       } else {
