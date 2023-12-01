@@ -1,27 +1,21 @@
-import { useState } from "react";
+import Counter from "./Counter.jsx";
+import Todos from "./Todos.jsx";
+import Footer from "./Footer.jsx";
 
-function Button() {
-  const [clicks, setClicks] = useState(0);
-  const [increaseBy, setInc] = useState(1);
-  console.log("increaseBy", increaseBy);
-
-  function handleClick() {
-    setClicks(clicks + increaseBy);
-  }
+function App() {
   return (
-    <main>
-      <input
-        type="number"
-        onChange={(ev) => setInc(Number(ev.target.value))}
-        value={increaseBy}
-      />
-      <button
-        onClick={handleClick}
-      >
-        Clicked {clicks} times
-      </button>
-    </main>
+    <div className="App">
+      <header>
+        <Counter />
+      </header>
+      <main>
+        <Todos />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
   );
 }
 
-export default Button;
+export default App;

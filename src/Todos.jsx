@@ -1,30 +1,26 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./Todos.css";
+import { AppContext } from "./context/app.context";
+
+
 
 // const initialState = JSON.parse(localStorage.getItem("todos") || "[]");
 
 const initialState = [
-  {
-    id: 1,
-    title: "Learn React",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "Learn JSX",
-    completed: false,
-  },
-  {
-    id: 3,
-    title: "Learn Hooks",
-    completed: false,
-  },
+
 ];
 
 function Todos() {
+
+  const [, setGlobalState] = useContext(AppContext);
+
   const [todos, _setTodos] = useState(initialState);
   const setTodos = (todos) => {
     _setTodos(todos);
+    setGlobalState((state) => ({
+      ...state,
+      todosLength: todos.length,
+    }));
     localStorage.setItem("todos", JSON.stringify(todos));
   };
   const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
